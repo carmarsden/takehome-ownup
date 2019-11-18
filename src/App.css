@@ -1,3 +1,42 @@
 .App {
-  text-align: center;
+    text-align: center;
+    margin: 5% auto;
+    width: 80%;
+}
+
+.requestform {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: end;
+}
+
+.requestform label {
+    margin: 5px;
+    width: 100%;
+    text-align: right;
+}
+
+.requestform label:nth-child(2) {
+    grid-row: 2 / 4;
+}
+
+.requestform button {
+    margin: 5px;
+    padding: 5px;
+    width: 60%;
+    font-family: inherit;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #000;
+}
+
+.requestform input, .requestform select {
+    border: 2px #000 solid;
+    margin-left: 10px;
+    padding: 3px;
+    width: 60%;
+    font-family: inherit;
+    font-size: inherit;
 }
