@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Coding Exercise: Own Up",
+  "name": "Take Home Coding Exercise: Own Up Rate Quotes",
   "icons": [
     {
       "src": "favicon.ico",
