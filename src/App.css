@@ -4,6 +4,12 @@
     width: 80%;
 }
 
+section {
+    margin: 5% auto;
+}
+
+/* REQUEST FORM STYLING */
+
 .requestform {
     display: grid;
     grid-auto-flow: column;
@@ -39,4 +45,30 @@
     width: 60%;
     font-family: inherit;
     font-size: inherit;
+}
+
+/* QUOTE TABLE STYLING */
+
+.quotestable {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px #000 solid;
+}
+
+.quotestable th, .quotestable td {
+    border: 2px #000 solid;
+    padding: 5px;
+}
+
+.quotestable th:nth-child(1) {
+    width: 25%;
+}
+
+.quotestable th:nth-child(3), .quotestable th:nth-child(6) {
+    width: 10%;
+}
+
+.quotestable tbody tr:nth-child(even) {
+    background-color: #E0E0E0;
 }

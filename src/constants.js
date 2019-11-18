@@ -31,3 +31,12 @@ export const occupancyTypes = [
         display: 'Investment Property'
     }
 ];
+
+export const tableHeaders = [
+    'Lender',
+    'Product',
+    'Rate',
+    'Closing Costs',
+    'Monthly Payment',
+    'APR'
+];

@@ -1,12 +1,14 @@
 import React from 'react';
 import './App.css';
 import RequestForm from './components/RequestForm';
+import RatesTable from './components/RatesTable';
+import DUMMYDATA from './DUMMYDATA';
 
 function App() {
   return (
     <div className="App">
         <RequestForm />
-        <p>This will be the take home coding exercise for Own Up: a form to review Rate Quotes.</p>
+        <RatesTable data={DUMMYDATA.rateQuotes} />
     </div>
   );
 }
