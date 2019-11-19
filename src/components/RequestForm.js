@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { propertyTypes, occupancyTypes } from '../constants';
+import { fetchRates } from '../redux/actions';
 
 class RequestForm extends React.Component {
     state = {
@@ -20,6 +22,7 @@ class RequestForm extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         console.log('You requested a rate quote with the following parameters: ', this.state);
+        this.props.fetchRates(this.state);
         this.setState({
             loanSize: '',
             creditScore: '',
@@ -90,4 +93,4 @@ class RequestForm extends React.Component {
     }
 }
 
-export default RequestForm;
+export default connect(null, { fetchRates })(RequestForm);

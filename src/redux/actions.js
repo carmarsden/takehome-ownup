@@ -1,9 +1,12 @@
+import DUMMYDATA from '../DUMMYDATA';
+
 export const FETCH_RATES_BEGIN = 'FETCH_RATES_BEGIN';
 export const FETCH_RATES_SUCCESS = 'FETCH_RATES_SUCCESS';
 export const FETCH_RATES_FAILURE = 'FETCH_RATES_FAILURE';
 
-export const fetchRatesBegin = () => ({
-    type: FETCH_RATES_BEGIN
+export const fetchRatesBegin = params => ({
+    type: FETCH_RATES_BEGIN,
+    payload: { params }
 });
 
 export const fetchRatesSuccess = rateQuotes => ({
@@ -16,14 +19,19 @@ export const fetchRatesFailure = error => ({
     payload: { error }
 });
 
-export const fetchRates = () => {
+export const fetchRates = params => {
     return (dispatch) => {
-        dispatch(fetchRatesBegin());
+        dispatch(fetchRatesBegin(params));
         return new Promise((resolve, reject) => {
             setTimeout(function() {
-                resolve('fetchRates action is getting resolved here!');
+                resolve(DUMMYDATA);
             }, 300);
         })
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res.rateQuotes);
+            dispatch(fetchRatesSuccess(res.rateQuotes));
+            return res;
+        })
+        .catch(err => dispatch(fetchRatesFailure(err)))
     }
 };

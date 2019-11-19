@@ -1,9 +1,10 @@
 import { FETCH_RATES_BEGIN, FETCH_RATES_SUCCESS, FETCH_RATES_FAILURE } from './actions';
 
 const initialState = {
+    introScreen: true,
     loading: false,
     error: null,
-    rateQuotes: []
+    quotes: []
 };
 
 export default function ratesReducer(state = initialState, action) {
@@ -12,6 +13,7 @@ export default function ratesReducer(state = initialState, action) {
             console.log('FETCH_RATES_BEGIN was called');
             return {
                 ...state,
+                introScreen: false,
                 loading: true,
                 error: null
             };
@@ -21,7 +23,7 @@ export default function ratesReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                rateQuotes: action.payload.rateQuotes
+                quotes: action.payload.rateQuotes
             };
 
         case FETCH_RATES_FAILURE:
@@ -30,7 +32,7 @@ export default function ratesReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: action.payload.error,
-                rateQuotes: [],
+                quotes: [],
             };
         
         default:
