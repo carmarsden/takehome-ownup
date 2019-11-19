@@ -23,7 +23,7 @@ function App(props) {
             return (
                 <section>
                     <p>Oh no! {props.error}</p>
-                    <p>Please try again?</p>
+                    <p>Please fix the error or try again later?</p>
                 </section>
             )
         } else if (props.quotes.length === 0) {

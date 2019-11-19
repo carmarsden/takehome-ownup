@@ -21,8 +21,9 @@ class RequestForm extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log('You requested a rate quote with the following parameters: ', this.state);
-        this.props.fetchRates(this.state);
+        const requestObj = this.state;
+        requestObj.loanSize = requestObj.loanSize.replace(/\D/g, '');
+        this.props.fetchRates(requestObj);
         this.setState({
             loanSize: '',
             creditScore: '',

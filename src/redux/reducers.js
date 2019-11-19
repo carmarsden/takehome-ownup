@@ -10,7 +10,6 @@ const initialState = {
 export default function ratesReducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_RATES_BEGIN:
-            console.log('FETCH_RATES_BEGIN was called');
             return {
                 ...state,
                 introScreen: false,
@@ -19,7 +18,6 @@ export default function ratesReducer(state = initialState, action) {
             };
 
         case FETCH_RATES_SUCCESS:
-            console.log('FETCH_RATES_SUCCESS was called');
             return {
                 ...state,
                 loading: false,
@@ -27,7 +25,6 @@ export default function ratesReducer(state = initialState, action) {
             };
 
         case FETCH_RATES_FAILURE:
-            console.log('FETCH_RATES_FAILURE was called');
             return {
                 ...state,
                 loading: false,

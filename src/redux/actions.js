@@ -1,12 +1,9 @@
-import DUMMYDATA from '../DUMMYDATA';
-
 export const FETCH_RATES_BEGIN = 'FETCH_RATES_BEGIN';
 export const FETCH_RATES_SUCCESS = 'FETCH_RATES_SUCCESS';
 export const FETCH_RATES_FAILURE = 'FETCH_RATES_FAILURE';
 
-export const fetchRatesBegin = params => ({
-    type: FETCH_RATES_BEGIN,
-    payload: { params }
+export const fetchRatesBegin = () => ({
+    type: FETCH_RATES_BEGIN
 });
 
 export const fetchRatesSuccess = rateQuotes => ({
@@ -20,18 +17,31 @@ export const fetchRatesFailure = error => ({
 });
 
 export const fetchRates = params => {
+    const queryParams = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
+    const queryString = '?' + queryParams.join('&');
+
     return (dispatch) => {
-        dispatch(fetchRatesBegin(params));
-        return new Promise((resolve, reject) => {
-            setTimeout(function() {
-                resolve(DUMMYDATA);
-            }, 300);
+        dispatch(fetchRatesBegin());
+        return fetch(`${process.env.REACT_APP_API_BASE_URL}${queryString}`, {
+                method: 'GET',
+            headers: {
+                'Authorization': `RG-AUTH ${process.env.REACT_APP_API_AUTH_TOKEN}`
+            }
         })
-        .then(res => {
-            console.log(res.rateQuotes);
-            dispatch(fetchRatesSuccess(res.rateQuotes));
-            return res;
+        .then(res => (res.ok) ? res.json() : res.json().then(e => Promise.reject(e)))
+        .then(json => {
+            dispatch(fetchRatesSuccess(json.rateQuotes));
+            return json;
         })
-        .catch(err => dispatch(fetchRatesFailure(err)))
+        .catch(res => {
+            let errDisplay = 'Something went wrong.';
+            if (res.error || res.message) {
+                errDisplay = res.error || res.message;
+            }
+            if (res.errors && Array.isArray(res.errors)) {
+                errDisplay = res.errors[0];
+            }
+            dispatch(fetchRatesFailure(errDisplay));
+        })
     }
 };
