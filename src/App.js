@@ -5,7 +5,7 @@ import RequestForm from './components/RequestForm';
 import RatesTable from './components/RatesTable';
 
 
-function App(props) {
+export function App(props) {
     const renderRatesSection = () => {
         if (props.introScreen) {
             return (
@@ -26,7 +26,7 @@ function App(props) {
                     <p>Please fix the error or try again later?</p>
                 </section>
             )
-        } else if (props.quotes.length === 0) {
+        } else if (props.quotes && props.quotes.length === 0) {
             return (
                 <section>
                     Oh dear, we couldn't find any rates for that request! Try another search?

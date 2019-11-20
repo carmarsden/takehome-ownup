@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { propertyTypes, occupancyTypes } from '../constants';
 import { fetchRates } from '../redux/actions';
 
-class RequestForm extends React.Component {
+export class RequestForm extends React.Component {
     state = {
         loanSize: '',
         creditScore: '',

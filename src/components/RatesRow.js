@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RatesRow(props) {
+export function RatesRow(props) {
     const rate = props.rate;
 
     const formattedInterestRate = rate.interestRate.toString() + '%';
